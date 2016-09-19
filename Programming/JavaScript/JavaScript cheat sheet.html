@@ -1,0 +1,191 @@
+<!doctype html>
+<head>
+  <title>JavaScript cheat sheet</title>
+  <link href='http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300,400' rel='stylesheet' type='text/css'>
+  <style>
+    body { padding: 0; margin-left: 4em; font-family: 'Averia Serif Libre', cursive; max-width: 84em; }
+    dt, code { font-family: Ubuntu mono, monospace; }
+    code { background: #bcf; padding: 0 3px; }
+    .left, .right { max-width: 40em; float: left; padding-bottom: 3em; }
+    .left { margin-right: 4em; }
+    dt { margin: .4em 0 .15em; background: #bcf; padding: .1em .2em; }
+    dd { margin-left: 1em; padding: 0; }
+    h1, h2 { font-weight: normal; }
+    h1 { border-bottom: 2px solid black; }
+  </style>
+</head>
+
+<h1>JavaScript cheat sheet</h1>
+
+<div class="left">
+
+<h2>Trivial expressions</h2>
+
+<dl>
+  <dt>blah</dt>
+  <dd>A plain word refers to a variable in the current environment.</dd>
+  <dt>"blah"</dt>
+  <dd>A quoted word is a string, a value containing piece of text.</dd>
+  <dt>12</dt>
+  <dd>A number value.</dd>
+  <dt>-12 1.5 3.4e10</dt>
+  <dd>Other ways to write numbers (negative, fractional, with exponent).</dd>
+  <dt>true</dt>
+  <dd>Boolean (yes/no) value. <code>true</code> for yes, <code>false</code> for no.</dd>
+</dl>
+
+<h2>Operator expressions</h2>
+
+<dl>
+  <dt>a + b</dt>
+  <dd>Binary operator applied to two values. <code>+</code> to
+  add, <code>-</code> to subtract, <code>*</code> to
+  multiply, <code>/</code> to divide.</dd>
+  <dt>(a + b) * c</dt>
+  <dd>Parenthesis for explicit grouping.</dd>
+  <dt>a &lt; b</dt>
+  <dd>Comparison operators <code>==</code>, <code>!=</code> (not
+  equal), <code>&lt;</code>, <code>></code>, <code>&lt;=</code> (less
+  or equal), <code>>=</code>.</dd>
+  <dt>a = b</dt>
+  <dd>Assignment, set variable <code>a</code> to value <code>b</code>.
+  Not to be confused with <code>==</code> comparison. <code>a +=
+  b</code> is a shorthand for <code>a = a + b</code>, also
+  for <code>-=</code> etc.</dd>
+  <dt>a &amp;&amp; b</dt>
+  <dd>Logical operators — <code>&amp;&amp;</code> for
+  AND, <code>||</code> for OR.</dd>
+  <dt>-a</dt>
+  <dd>Unary (one-operand) operator. <code>-</code> to
+  negate, <code>!</code> for boolean negation.</dd>
+</dl>
+
+<h2>Composite expressions</h2>
+
+<dl>
+  <dt>a[b]</dt>
+  <dd>Subscript, fetch the field named by <code>b</code> from value <code>a</code>.</dd>
+  <dt>a.x</dt>
+  <dd>Shorthand for <code>a["x"]</code>.</dd>
+  <dt>a(b)</dt>
+  <dd>Function call. Call the function value <code>a</code>
+  with <code>b</code> as argument. Zero or more argument expressions
+  can be given, separated by spaces. <code>a(1, 2, 3, 4)</code></dd>
+  <dt>a.x(b)</dt>
+  <dd>Method call. Call the function found in field <code>x</code> of
+  value <code>a</code>, <strong>and</strong> pass <code>a</code> as
+  the <code>this</code> argument.</dd>
+  <dt>[1, 2, 3, 4]</dt>
+  <dd>Array value with zero or more elements.</dd>
+  <dt>{a: 1, b: 2}</dt>
+  <dd>Object value with zero or more <code>name: value</code> field
+  definitions.</dd>
+  <dt>function(arg1, arg2) { /* ... body ... */ }</dt>
+  <dd>Function value. Zero or more argument names. Any statements may
+  appear in body.</dd>
+</dl>
+
+<h2>Statements</h2>
+
+<dl>
+  <dt>a;</dt>
+  <dd>Any expression, followed by a semicolon, is a statement.</dd>
+  <dt>{a; b; c;}</dt>
+  <dd>A series of statements, wrapped in braces, form a composite
+  statement.</dd>
+  <dt>var a = b;</dt>
+  <dd>Variable definition. The variable with name <code>a</code> is
+  defined and given value <code>b</code>. Value is optional. <code>var
+  a;</code> sets <code>a</code> to undefined.</dd>
+  <dt>function foo(arg1, arg2) { /* ... body ... */ }</dt>
+  <dd>Function definition. Defines variable <code>foo</code> to have a
+  function value. Zero or more arguments, any statements may appear in
+  body.</dd>
+  <dt>if (a) { /* ... */ } else { /* ... */ }</dt>
+  <dd>Conditional statement. If value <code>a</code> is true, the
+  first statement, otherwise the else statement executes. Else part
+  may be left off. Can be chained as in <code>if (a) {} else if (b) {}
+  else {}</code>.</dd>
+  <dt>while (a) { /* ... */ }</dt>
+  <dd>A loop. The loop body statement will be executed as long
+  as <code>a</code> produces a true value.</dd>
+  <dt>for (var a = 0; a &lt; 10; a = a + 1) { /* ... */ }</dt>
+  <dd>Example <code>for</code>-loop statement. <code>var a = 1</code>
+  initializes the loop, <code>a &lt; 10</code> checks whether it has
+  ended yet, and <code>a = a + 1</code> moves to the next step.</dd>
+  <dt>return a;</dt>
+  <dd>Only valid inside a function. Returns value <code>a</code> as
+  the result of the function call.</dd>
+</dl>
+
+</div>
+<div class="right">
+
+<h2>Useful functions</h2>
+
+<dl>
+  <dt>Number(v)</dt>
+  <dd>Converts <code>v</code> to a number. <code>Number("5")</code>
+  gives <code>5</code>.</dd>
+  <dt>String(v)</dt>
+  <dd>Converts <code>v</code> to a string.</dd>
+  <dt>alert("hello")</dt>
+  <dd>Show a dialog window saying 'hello'.</dd>
+  <dt>confirm("are you sure?")</dt>
+  <dd>Show a yes/no dialog. Returns
+  a <code>true</code>/<code>false</code> value indicating whether the
+  user clicked yes.</dd>
+  <dt>prompt("what is your name?", "")</dt>
+  <dd>Show a dialog asking for input. First argument is the message,
+  second argument is the initial value of the input.</dd>
+</dl>
+
+<h2>Useful string properties</h2>
+
+<dl>
+  <dt>"foo".length</dt>
+  <dd>The length (number of characters) of the string.</dd>
+  <dt>"foo".charAt(n)</dt>
+  <dd>Get the character at position <code>n</code>. (Zero is the first character.)</dd>
+  <dt>"foo".slice(from, to)</dt>
+  <dd>Get a piece of the string. <code>"012345".slice(1, 4)</code>
+  gives <code>"123"</code>.</dd>
+  <dt>"a b c".split(" ")</dt>
+  <dd>Split the string on a character, producing an array of strings (<code>["a", "b", "c"]</code>).</dd>
+</dl>
+
+<h2>Useful array properties</h2>
+
+<dl>
+  <dt>a[i]</dt>
+  <dd>If <code>i</code> is an integer, this will access the element at that position.</dd>
+  <dt>a.length</dt>
+  <dd>The number of elements in the array.</dd>
+  <dt>a.push(b)</dt>
+  <dd>Add value <code>b</code> to the end of the array.</dd>
+  <dt>a.pop()</dt>
+  <dd>Remove the last element of the array, and return it.</dd>
+  <dt>a.slice(from, to)</dt>
+  <dd>Get a piece of the array, similar to the <code>slice</code> method on strings.</dd>
+</dl>
+
+<h2>Useful math properties</h2>
+
+<dl>
+  <dt>Math.random()</dt>
+  <dd>Produce a random number between 0 and 1.</dd>
+  <dt>Math.round(x)</dt>
+  <dd>Round <code>x</code> to an integer.</dd>
+  <dt>Math.abs(x)</dt>
+  <dd>Returns the absolute (positive) value of <code>x</code>.</dd>
+  <dt>Math.max(a, b, c, ...) Math.min(a, b, c, ...)</dt>
+  <dd>Given any number of values, returns the greatest (<code>max</code>) or smallest (<code>min</code>) one.</dd>
+  <dt>Math.PI</dt>
+  <dd>The pi (π) constant.</dd>
+  <dt>Math.cos(x) Math.sin(x) Math.tan(x)</dt>
+  <dd>Trigonometric functions.</dd>
+  <dt>Math.acos(x) Math.asin(x) Math.atan(x)</dt>
+  <dd>Inverse trigonometric functions.</dd>
+</dl>
+
+</div>
