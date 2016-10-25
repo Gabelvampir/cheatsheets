@@ -1,0 +1,43 @@
+# Get info about all Contexts in ldap
+ldapsearch -x -H ldap://localhost -b "" -s base configContext namingContexts monitorContext
+
+# display cn=config structures and data
+ldapsearch -Y EXTERNAL -H ldapi:/// -b "cn=config"
+# or
+slapcat -b cn=config > config.ldiff
+
+
+# modify config 
+ldapadd -Y EXTERNAL -H ldapi:/// -f data/acl.ldif
+
+
+# add schema
+
+* create file schema_converter.conf with:
+
+include /etc/ldap/core.schema
+include /etc/ldap/your.schema
+
+* create temporary directory 
+ mkdir /tmp/ldif_output
+
+* convert schema_converter.conf to ldif using slapdtest
+slaptest -f schema_convert.conf -F /tmp/ldif_output
+
+Edit the /tmp/ldif_output/cn=config/cn=schema/cn={2}your.schema.ldif
+
+and add 
+dn: cn=your,cn=schema,cn=config
+
+And remove the following lines from the bottom of the file:
+
+structuralObjectClass: olcSchemaConfig
+entryUUID: 10dae0ea-0760-102d-80d3-f9366b7f7757
+creatorsName: cn=config
+createTimestamp: 20080826021140Z
+entryCSN: 20080826021140.791425Z#000000#000#000000
+modifiersName: cn=config
+modifyTimestamp: 20080826021140Z
+
+
+--https://gist.github.com/mitfik/3402722
